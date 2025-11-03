@@ -9,7 +9,7 @@ import distance as dist
 @dataclass
 class Solution:
     tour: List[int]
-    df: Optional[pd.DataFrame] = None  # DataFrame reference for fitness
+    df: Optional[pd.DataFrame] = None  
 
     def __post_init__(self):
         self.tour = [int(x) for x in self.tour]
