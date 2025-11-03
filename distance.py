@@ -1,14 +1,9 @@
 import math
 
 def euclidean_distance(ax: float, ay: float, bx: float, by: float) -> float:
-    """Return Euclidean distance between two points."""
     return math.hypot(bx - ax, by - ay)
 
 def distance(a, b) -> float:
-    """
-    Accepts pandas Series (with 'x','y') or tuples like (city,x,y) or (x,y).
-    Returns float Euclidean distance.
-    """
     try:
         ax = float(a["x"]); ay = float(a["y"])
     except Exception:

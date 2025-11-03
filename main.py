@@ -38,11 +38,9 @@ def generate_population(df, n: int, include: list = None, rng=None):
 
 def run_for_file(path: str, save_prefix: str = None):
     df = parser.parse_tsp(path)
-    # 8. greedy for every start
     all_g = greedy_all_starts(df)
     best_g = min(all_g, key=lambda sb: sb[1].fitness())
     print(f"Best greedy start {best_g[0]} -> {best_g[1].info(name='greedy_best')}")
-    # 9. generate 100 random
     rng = random.Random(42)
     rands = [random_solution_from_df(df, rng) for _ in range(100)]
     scores = [s.fitness() for s in rands]
@@ -58,7 +56,6 @@ def run_for_file(path: str, save_prefix: str = None):
         print(f"Saved random scores to {os.path.abspath(out)}")
 
 if __name__ == "__main__":
-    # adjust filenames if needed; place these files in project folder
     base = "e:\\py_gen_algorithms\\tsp"
     files = [
         (os.path.join(base, "berlin11_modified.tsp"), os.path.join(base, "berlin11")),
@@ -69,5 +66,4 @@ if __name__ == "__main__":
             print(f"File not found: {path}  (put the .tsp file in e:\\py_gen_algorithms)")
             continue
         print(f"\n--- Running for {path} ---")
-        # do not save CSV results: call without save_prefix (or pass None)
         run_for_file(path)
